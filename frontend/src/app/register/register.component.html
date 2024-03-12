@@ -1,0 +1,38 @@
+<div>
+  <!-- Header -->
+  <div class="modal-header modal-logo-header">
+    <img src="assets/logos/ph-logo.svg" alt="" class="ph-logo">
+  </div>
+
+  <!-- Content -->
+  <div class="form-container">
+    <form (ngSubmit)="onFormSubmit(form)" #form="ngForm">
+      <!-- Input Fields -->
+      <div class="input-row">
+        <label for="name">Name</label>
+        <input ngModel type="text" name="name" class="input-field" placeholder="Name" [autofocus] pattern="^[a-zA-Z0-9]*$" required>
+        <div *ngIf="form.controls.name?.errors?.pattern" style="color: red;"><p>Name can only contain alphanumeric characters.</p></div>
+        <div *ngIf="form.controls.name?.errors?.required" style="color: red;">Name is required.</div>
+      </div>
+      <div class="input-row">
+        <label for="email">Email</label>
+        <input ngModel name="email" type="email" class="input-field" placeholder="Email" email required>
+        <div *ngIf="form.controls.email?.errors?.email" style="color: red;"><p>Please enter a valid email.</p></div>
+        <div *ngIf="form.controls.email?.errors?.required" style="color: red;">Email is required.</div>
+      </div>
+      <div class="input-row">
+        <label for="color">Favorite Color</label>
+        <input [(ngModel)]="favColor" type="color" name="color" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" required>
+        <div *ngIf="form.controls.color?.errors?.pattern" style="color: red;"><p>Please enter a valid hex color.</p></div>
+        <div *ngIf="form.controls.color?.errors?.required" style="color: red;">Color is required.</div>
+      </div>
+
+      <!-- Button -->
+      <div class="button-row">
+        <button class="btn primary-btn" type="submit" [disabled]="form.invalid">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
